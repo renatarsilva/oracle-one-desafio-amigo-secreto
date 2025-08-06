@@ -9,20 +9,30 @@ exibirTextoNaTela("h1", "Amigo Secreto da Maki");
 
 function adicionarAmigo() {
   const nomeDoAmigo = document.getElementById("amigo");
+
+  if (!nomeDoAmigo.value) {
+    alert("digite um nome válido!");
+  }
+
   amigos.push(nomeDoAmigo.value);
-  nomeDoAmigo.value = "";
   console.log(`amigos: ${amigos}`);
   console.log(nomeDoAmigo);
+
+  let listaAmigos = document.getElementById("listaAmigos");
+  let amigoAdd = document.createElement("li");
+  amigoAdd.innerText = nomeDoAmigo.value;
+  listaAmigos.appendChild(amigoAdd);
+
+  console.log(listaAmigos);
+  nomeDoAmigo.value = "";
 }
 
 function sortearAmigo() {
   let numeroSorteado = Math.floor(Math.random() * amigos.length);
   let amigoSorteado = amigos[numeroSorteado];
-
   let resultado = document.getElementById("resultado");
   let sorteado = document.createElement("li");
-
-  sorteado.innerText = amigoSorteado;
+  sorteado.innerText = `O amigo escolhido é: ${amigoSorteado}`;
   resultado.appendChild(sorteado);
   console.log(resultado);
   amigos.filter((amigo) => amigo !== amigoSorteado);
@@ -30,5 +40,3 @@ function sortearAmigo() {
 
 localStorage.setItem("lista-de-amigos", JSON.stringify(amigos));
 const amigos1 = localStorage.getItem("lista-de-amigos");
-
-let listaAmigos = document.getElementById("listaAmigos");
