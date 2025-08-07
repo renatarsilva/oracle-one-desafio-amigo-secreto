@@ -2,6 +2,8 @@
 
 Este projeto é uma aplicação web simples para organizar sorteios de amigo secreto entre amigos. Desenvolvido como parte de um desafio de lógica de programação, ele permite adicionar nomes de participantes e realizar o sorteio de forma prática e divertida.
 
+https://oracle-one-desafio-amigo-secreto.vercel.app/
+
 ## Funcionalidades
 
 - Adição de nomes de amigos participantes.
