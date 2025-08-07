@@ -15,19 +15,14 @@ function adicionarAmigo() {
   }
 
   amigos.push(nomeDoAmigo.value);
-  console.log(`amigos: ${amigos}`);
-  console.log(nomeDoAmigo);
 
-  let listaAmigos = document.getElementById("listaAmigos");
-  let amigoAdd = document.createElement("li");
-  amigoAdd.innerText = nomeDoAmigo.value;
-  listaAmigos.appendChild(amigoAdd);
+  atualizarLista();
 
-  console.log(listaAmigos);
   nomeDoAmigo.value = "";
 }
 
 function sortearAmigo() {
+  if (amigos.length < 1) return;
   let numeroSorteado = Math.floor(Math.random() * amigos.length);
   let amigoSorteado = amigos[numeroSorteado];
   let resultado = document.getElementById("resultado");
@@ -35,8 +30,20 @@ function sortearAmigo() {
   sorteado.innerText = `O amigo escolhido é: ${amigoSorteado}`;
   resultado.appendChild(sorteado);
   console.log(resultado);
-  amigos.filter((amigo) => amigo !== amigoSorteado);
+  amigos = amigos.filter((amigo) => amigo !== amigoSorteado);
+  console.log("teste");
+  atualizarLista();
 }
 
 localStorage.setItem("lista-de-amigos", JSON.stringify(amigos));
 const amigos1 = localStorage.getItem("lista-de-amigos");
+
+function atualizarLista() {
+  let listaAmigos = document.getElementById("listaAmigos");
+  listaAmigos.innerHTML = "";
+  for (let i = 0; i < amigos.length; i++) {
+    let amigoItem = document.createElement("li");
+    amigoItem.innerText = amigos[i];
+    listaAmigos.appendChild(amigoItem);
+  }
+}
